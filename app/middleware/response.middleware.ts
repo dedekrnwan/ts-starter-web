@@ -6,7 +6,6 @@ export default (retur: any, request: express.Request, response: express.Response
     if(request.originalUrl.split('/')[1] == 'api'){
         response.status(retur.meta.status || 500).json(<IResponse> retur);
     }else{
-        console.log(retur)
         response.render('vendor/error', { layout: 'error' , error:retur } );
     }
    

@@ -24,6 +24,7 @@ class App {
     private middlewares(){
         this.app.use(cors())
         this.app.use('/public',express.static(path.join(__dirname, './../public/')))
+        this.app.use('/vendor',express.static(path.join(__dirname, './../vendor/')))
     }
     private routes(routes:any){
         routes.data.forEach((route:any) => {

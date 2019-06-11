@@ -17,7 +17,6 @@ class Routes {
     public run(){
         this.router.route(this.path)
             .get(
-                this.MJwt.authenticated,
                 this.controller.index
             );
     }
