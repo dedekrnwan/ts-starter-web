@@ -17,7 +17,7 @@ class Routes {
     public run(){
         this.router.route(this.path)
             .get(
-                this.controller.index
+                this.controller.index.bind(this.controller)
             );
     }
 }
