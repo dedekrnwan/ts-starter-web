@@ -3,7 +3,6 @@ import { IResponse, IMeta } from "./../interfaces/response.interface";
 class HResponse
 {
     constructor(){
-        
     }
     //#region 2**
     public ok(message: string = `Ok`, data: any):IResponse{

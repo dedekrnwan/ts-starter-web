@@ -26,24 +26,9 @@ class App {
         this.app.use('/public',express.static(path.join(__dirname, './../public/')))
     }
     private routes(routes:any){
-        console.log(routes.category)
-        switch (routes.category) {
-            case 'web':
-                routes.data.forEach((route:any) => {
-                    this.app.use('/', route.router);
-                });
-                break;
-            case 'api':
-                    routes.data.forEach((route:any) => {
-                    this.app.use('/api', route.router);
-                });
-                break;
-            default:
-                    routes.data.forEach((route:any) => {
-                    this.app.use('/', route.router);
-                });
-                break;
-        }
+        routes.data.forEach((route:any) => {
+            this.app.use(routes.uses, route.router);
+        });
     }
     private error_handler(){
         //404 handler

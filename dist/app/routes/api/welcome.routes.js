@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
-const welcome_controller_1 = require("./../../controller/welcome.controller");
+const welcome_controller_1 = require("./../../controller/api/welcome.controller");
 const auth_middleware_1 = require("./../../middleware/auth.middleware");
 class Routes {
     constructor() {
