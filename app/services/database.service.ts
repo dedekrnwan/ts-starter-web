@@ -6,18 +6,18 @@ class Database {
 
     }
     
-    public fractal:any = () => {
-        mongoose.connect(
+    fractal:any = async () => {
+        await mongoose.connect(
             fractal.url, 
             {useNewUrlParser: true}
         );
-        mongoose.connection.on('connected', () => {
+        await mongoose.connection.on('connected', () => {
             console.log(`Mongoose ${fractal.schema} connection is open to ${fractal.url}`);
         });
-        mongoose.connection.on('error', (error) => {
+        await mongoose.connection.on('error', (error) => {
             console.log(`Mongoose ${fractal.schema} connection at ${ fractal.url} has occured ${error} error`);
         });
-        mongoose.connection.on('disconnected', () => {
+        await mongoose.connection.on('disconnected', () => {
             console.log(`Mongoose ${fractal.schema} connection at ${ fractal.url} is disconnected`);
         });
         // process.on('SIGINT', function(){

@@ -6,7 +6,9 @@ import { Jwt as MJwt } from "./../../middleware/auth.middleware";
 
 class Routes {
     private router:express.Router = express.Router()
-    private path:string = '/'
+    public path:Array<string> = [
+        '/'
+    ] 
     private controller:WelcomeController
     private MJwt = new MJwt()
     constructor() {
@@ -15,7 +17,7 @@ class Routes {
     }
     
     public run(){
-        this.router.route(this.path)
+        this.router.route(this.path[0])
             .get(
                 this.controller.index.bind(this.controller)
             );

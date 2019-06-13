@@ -1,7 +1,7 @@
 import { default as web_RWelcome } from "./web/welcome.routes";
 import { default as api_RWelcome } from "./api/welcome.routes";
 
-const web:Object =  {
+const web:any =  {
     uses: '/',
     category: 'web',
     data: <any> [
@@ -9,7 +9,7 @@ const web:Object =  {
     ]
 }
 
-const api:Object =  {
+const api:any =  {
     uses: '/api',
     category: 'api',
     data: <any> [
