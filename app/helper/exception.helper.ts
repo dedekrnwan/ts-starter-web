@@ -1,7 +1,7 @@
 import { IMeta } from "./../interfaces/response.interface";
-import Error from "./../interfaces/error.interface";
+import { Error } from "./../interfaces";
 
-class Exception extends Error {
+export class Exception extends Error {
     public meta:IMeta
     public data:any
     constructor(error: Error) {
@@ -16,6 +16,4 @@ class Exception extends Error {
         error : error
       }
     }
-  }
-   
-export default Exception;
+}

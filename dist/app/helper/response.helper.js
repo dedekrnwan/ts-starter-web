@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-class HResponse {
+class Response {
     constructor() {
     }
     //#region 2**
@@ -81,4 +81,4 @@ class HResponse {
         };
     }
 }
-exports.default = HResponse;
+exports.Response = Response;

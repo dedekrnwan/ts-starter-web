@@ -8,9 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const exception_helper_1 = require("./../helper/exception.helper");
-const response_helper_1 = require("./../helper/response.helper");
-const jwt_helper_1 = require("./../helper/jwt.helper");
+const Helper = require("./../helper");
 class Jwt {
     constructor() {
     }
@@ -21,19 +19,19 @@ class Jwt {
                 let token = req.headers["authorization"];
                 //if no token found, return response (without going to the next middelware)
                 if (!token) {
-                    next(new response_helper_1.default().unAuthorized('Access denied. No token provided.', req.body));
+                    next(new Helper.Response().unAuthorized('Access denied. No token provided.', req.body));
                 }
                 else {
                     //if can verify the token, set req.user and pass to next middleware
                     token = token.replace('Bearer ', '');
-                    let Jwt_Helper = new jwt_helper_1.default(token);
+                    let Jwt_Helper = new Helper.Jwt(token);
                     const decoded = yield Jwt_Helper.verify();
                     next();
                 }
             }
             catch (error) {
                 console.log(error);
-                next(yield new exception_helper_1.default(error));
+                next(yield new Helper.Exception(error));
             }
         });
     }
@@ -42,7 +40,7 @@ class Jwt {
             try {
             }
             catch (error) {
-                next(yield new exception_helper_1.default(error));
+                next(yield new Helper.Exception(error));
             }
         });
     }

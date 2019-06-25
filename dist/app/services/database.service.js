@@ -1,18 +1,26 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose = require("mongoose");
 const database_config_1 = require("./../config/database.config");
 class Database {
     constructor() {
-        this.fractal = () => {
-            mongoose.connect(database_config_1.fractal.url, { useNewUrlParser: true });
-            mongoose.connection.on('connected', () => {
+        this.fractal = () => __awaiter(this, void 0, void 0, function* () {
+            yield mongoose.connect(database_config_1.fractal.url, { useNewUrlParser: true });
+            yield mongoose.connection.on('connected', () => {
                 console.log(`Mongoose ${database_config_1.fractal.schema} connection is open to ${database_config_1.fractal.url}`);
             });
-            mongoose.connection.on('error', (error) => {
+            yield mongoose.connection.on('error', (error) => {
                 console.log(`Mongoose ${database_config_1.fractal.schema} connection at ${database_config_1.fractal.url} has occured ${error} error`);
             });
-            mongoose.connection.on('disconnected', () => {
+            yield mongoose.connection.on('disconnected', () => {
                 console.log(`Mongoose ${database_config_1.fractal.schema} connection at ${database_config_1.fractal.url} is disconnected`);
             });
             // process.on('SIGINT', function(){
@@ -21,7 +29,7 @@ class Database {
             //         process.exit(0)
             //     });
             // });
-        };
+        });
     }
 }
-exports.default = Database;
+exports.Database = Database;

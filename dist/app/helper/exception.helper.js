@@ -14,4 +14,4 @@ class Exception extends Error {
         };
     }
 }
-exports.default = Exception;
+exports.Exception = Exception;

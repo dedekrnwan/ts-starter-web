@@ -1,4 +1,13 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -8,23 +17,34 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const controller_1 = require("./../../vendor/controller");
-const exception_helper_1 = require("./../helper/exception.helper");
-class WelcomeController extends controller_1.default {
+const Helper = require("./../helper");
+const decorators_express_1 = require("@dedekrnwan/decorators-express");
+let WelcomeController = 
+// @ClassMiddleware.before([
+//     Middleware.Auth.Jwt
+// ])
+class WelcomeController {
     constructor() {
-        super();
-    }
-    index(request, response, next) {
-        return __awaiter(this, void 0, void 0, function* () {
+        this.index = (request, response, next) => __awaiter(this, void 0, void 0, function* () {
             try {
-                let template = 'welcome/index';
-                //next to viewer
-                response.render(template);
+                next(new Helper.Response().ok(`Mantab`, {}));
             }
             catch (error) {
-                next(new exception_helper_1.default(error));
+                next(new Helper.Exception(error));
             }
         });
     }
-}
-exports.default = WelcomeController;
+};
+__decorate([
+    decorators_express_1.Root(),
+    __metadata("design:type", Object)
+], WelcomeController.prototype, "index", void 0);
+WelcomeController = __decorate([
+    decorators_express_1.Controller('/welcome')
+    // @ClassMiddleware.before([
+    //     Middleware.Auth.Jwt
+    // ])
+    ,
+    __metadata("design:paramtypes", [])
+], WelcomeController);
+exports.WelcomeController = WelcomeController;

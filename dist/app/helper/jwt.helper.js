@@ -10,14 +10,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const jwt = require("jsonwebtoken");
 const fs = require("fs");
-const jwt_config_1 = require("./../config/jwt.config");
+const Config = require("./../config");
 class Jwt {
     constructor(data, $options) {
         this.data = data;
         //key
         this.key();
         if (!$options) {
-            this.options = jwt_config_1.default.options;
+            this.options = Config.Jwt();
         }
         else {
             this.options.issuer = ($options.issuer) ? $options.issuer : this.options.issuer;
@@ -70,4 +70,4 @@ class Jwt {
         });
     }
 }
-exports.default = Jwt;
+exports.Jwt = Jwt;

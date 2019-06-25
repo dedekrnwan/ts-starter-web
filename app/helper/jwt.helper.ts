@@ -1,30 +1,19 @@
 import * as jwt from "jsonwebtoken";
 import * as fs from "fs";
-import cJwt from "./../config/jwt.config";
+import * as Config from "./../config";
+import { IJwtOptions } from "./../interfaces";
 
-interface JwtInterface {
-    secret: string,
-    options:OptionsInterface
-}
-interface OptionsInterface{
-    issuer:  string,
-    subject:  string,
-    audience:  string,
-    expiresIn:  string,
-    algorithm:  any   // RSASSA [ "RS256", "RS384", "RS512" ]
-}
-
-class Jwt {
+export class Jwt {
     public data:any
     private private:string
     private public:string
-    public options:OptionsInterface
-    constructor(data:any, $options?:OptionsInterface) {
+    public options:IJwtOptions
+    constructor(data:any, $options?:IJwtOptions) {
         this.data = data
         //key
         this.key()
         if(!$options){
-            this.options = cJwt.options
+            this.options = Config.Jwt()
         }else{
             this.options.issuer = ($options.issuer) ? $options.issuer : this.options.issuer;
             this.options.subject = ($options.subject) ? $options.subject : this.options.subject;
@@ -45,7 +34,7 @@ class Jwt {
     }
     public async sign(){
         // Token signing options
-        let option = <OptionsInterface> {
+        let option = <IJwtOptions> {
             issuer:  this.options.issuer,
             subject:  this.options.subject,
             audience:  this.options.audience,
@@ -59,7 +48,7 @@ class Jwt {
         );
     }
     public async verify(){
-        let option = <OptionsInterface> {
+        let option = <IJwtOptions> {
             issuer:  this.options.issuer,
             subject:  this.options.subject,
             audience:  this.options.audience,
@@ -81,5 +70,3 @@ class Jwt {
         );
     }
 }
-
-export default Jwt

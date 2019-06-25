@@ -1,43 +1,40 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
-const server_config_1 = require("./../app/config/server.config");
-const routes_1 = require("./../app/routes/routes");
-const database_service_1 = require("./../app/services/database.service");
-const response_helper_1 = require("./../app/helper/response.helper");
-const response_middleware_1 = require("./../app/middleware/response.middleware");
-const cors = require("cors");
 const path = require("path");
 const hbs = require("express-handlebars");
+const server_config_1 = require("./../app/config/server.config");
+const services_1 = require("./../app/services");
+const decorators_express_1 = require("@dedekrnwan/decorators-express");
+const controller_1 = require("./../app/controller");
+const Middlewares = require("./../app/middleware");
 class App {
     constructor() {
         this.app = express();
-        this.middlewares();
+        // this.routes(web)
+        // this.routes(api)
+        this.app = Middlewares.before(this.app);
+        this.app = decorators_express_1.Attach.Controller(this.app, [
+            //all your controller
+            controller_1.WelcomeController
+        ], '/api');
+        this.app = Middlewares.after(this.app);
+        this.app = Middlewares.error(this.app);
+        this.static();
         this.view();
-        this.routes(routes_1.web);
-        this.routes(routes_1.api);
-        this.error_handler();
         this.database();
     }
-    middlewares() {
-        this.app.use(cors());
+    static() {
         this.app.use('/public', express.static(path.join(__dirname, './../public/')));
+        this.app.use('/vendor', express.static(path.join(__dirname, './../vendor/')));
     }
     routes(routes) {
         routes.data.forEach((route) => {
             this.app.use(routes.uses, route.router);
         });
     }
-    error_handler() {
-        //404 handler
-        this.app.use((req, res, next) => {
-            next(new response_helper_1.default().notFound(`Not Found`, {}));
-        });
-        //error handler
-        this.app.use(response_middleware_1.default);
-    }
     database() {
-        const db = new database_service_1.default();
+        const db = new services_1.Database();
         db.fractal();
     }
     view() {

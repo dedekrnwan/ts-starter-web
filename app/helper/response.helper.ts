@@ -1,6 +1,6 @@
 import { IResponse, IMeta } from "./../interfaces/response.interface";
 
-class HResponse
+export class Response
 {
     constructor(){
     }
@@ -85,5 +85,3 @@ class HResponse
     }
     //#endregion
 }
-
-export default HResponse

@@ -1,4 +1,4 @@
-export default interface App{
+export interface IApp{
     name:string,
     port:number,
     env:string,

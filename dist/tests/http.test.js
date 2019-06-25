@@ -1,9 +1,7 @@
-import App from "../lib/app";
-import * as request from "supertest";
-import * as mongoose from "mongoose";
-
-const app = new App().app;
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const app_1 = require("../lib/app");
+const app = new app_1.default().app;
 // describe('Accessing api controllers', () => {
 //     Api.forEach(item => {
 //         item.path.forEach(path => {
@@ -17,4 +15,3 @@ const app = new App().app;
 //         });
 //     })
 // })
-

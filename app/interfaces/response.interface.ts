@@ -1,12 +1,10 @@
-interface IMeta {
+export interface IMeta {
     response:boolean,
     status:number,
     message:string,
     timestamp:Date
 }
-interface IResponse {
+export interface IResponse {
     meta:IMeta,
     data:any
 }
-
-export { IResponse, IMeta }

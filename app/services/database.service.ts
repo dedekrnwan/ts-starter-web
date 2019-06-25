@@ -1,7 +1,7 @@
 import * as mongoose from "mongoose";
 import { fractal } from "./../config/database.config";
 
-class Database {
+export class Database {
     constructor(){
 
     }
@@ -28,5 +28,3 @@ class Database {
         // });
     }
 }
-
-export default Database
