@@ -1,6 +1,6 @@
 import App from "./app";
-import cServer from "./../app/config/server.config";
+import * as Config from "./../app/config";
 
 const app = new App()
 
-app.run(cServer.port)
+app.run(Config.Server.port)
