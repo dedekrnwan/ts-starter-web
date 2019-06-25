@@ -1,7 +1,7 @@
-Folder Structure Conventions
+Typescript -> ExpressJs Project Starter
 ============================
 
-> Folder structure options and naming conventions for software projects
+> Structure folder of Typescript -> ExpressJs Project Starter
 
 ### A typical top-level directory layout
 
@@ -20,17 +20,16 @@ Folder Structure Conventions
     ├── tsconfig.json           # Typescript configuration
     └── README.md
 
-> Use short lowercase names at least for the top-level files and folders except
-> `LICENSE`, `README.md`
-
+<!-- > Use short lowercase names at least for the top-level files and folders except
+> `LICENSE`, `README.md` -->
 
 ### Automated tests
 
-Automated tests are usually placed into the `test` or, less commonly, into the `spec` or `tests` folder.
+Automated tests are usually placed into the `tests` or, less commonly, into the `spec` or `test` folder.
 
-> **Q: Why tests are placed into a separate folder, as opposed to having them closer to the code under test?**
+> **Q: Why tests are placed into a separate folder, as opposed to having them closer to the code under testS?**
 >
-> **A:** Because you don't want to test the code, you want to test the *program*.
+> **A:** Because you don't want to test the code, you want to tests the *program*.
 
     .
     ├── ...
